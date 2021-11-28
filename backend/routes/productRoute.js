@@ -7,7 +7,6 @@ const router = express.Router()
 //get all producte
 router.route('/products').get(getAllProducts)
 
-
 //create product --Admin
 router.route('/products/new').post(createProducts)
 

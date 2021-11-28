@@ -4,10 +4,10 @@ const Apifeture = require('../utils/Apifeture')
 //get all products
 const getAllProducts = async(req,res)=>{
     try{
-       const apiFeture = new Apifeture(Product.find(),req.query)
-       .filter();
-        let product = await apiFeture
-        // console.log('product',product)
+        const resultPerPase = 5;
+        const productCount = await Product.countDocuments()
+        const apiFeture = new Apifeture(Product.find(),req.query).search().filter().pagination(resultPerPase)
+        let product = await apiFeture.query
         res.status(200).json({success:true,product})
     }catch(error){
         console.log('error in get all product',error.message)
